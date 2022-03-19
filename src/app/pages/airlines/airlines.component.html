@@ -1,0 +1,47 @@
+<h1>Airlines List</h1>
+<hr />
+
+<div class="row">
+    <div class="col text-right">
+        <button routerLink="/airlines" class="btn btn-primary">
+      <i class="fa fa-plus"></i>
+      Add
+    </button>
+    </div>
+</div>
+
+<table class="table mt-3 animated fadeIn faster">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">country</th>
+            <th scope="col">Logo</th>
+            <th scope="col">Slogan</th>
+            <th scope="col">Head quaters</th>
+            <th scope="col">Website</th>
+            <th scope="col">Established</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let airline of airline; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ airline.name }}</td>
+            <td>{{ airline.country }}</td>
+            <td>{{ airline.logo }}</td>
+            <td>{{ airline.slogan }}</td>
+            <td>{{ airline.head_quaters }}</td>
+            <td>{{ airline.website }}</td>
+            <td>{{ airline.established }}</td>
+            <td>
+                <button class="btn btn-info mr-1" [routerLink]="['/airlines', airline.id]">
+          <i class="fa fa-pen"></i>
+        </button>
+                <button class="btn btn-danger" (click)="borrarAirline(airline,i)">
+          <i class="fa fa-trash"></i>
+        </button>
+            </td>
+         </tr>
+    </tbody>
+</table>

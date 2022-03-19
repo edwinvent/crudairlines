@@ -1,0 +1,23 @@
+<div class="row text-right">
+    <div class="col">
+        <button class="btn btn-danger" routerLink="/heroes">
+      <i class="fa fa-arrow-left"></i>
+      Return
+    </button>
+    </div>
+</div>
+
+<div class="row animated fadeIn faster">
+    <div class="col">
+        <form (ngSubmit)="guardar(f)" #f="ngForm">
+            <div class="form-group">
+                <label>Firebase ID</label>
+                <input type="text" class="form-control" placeholder="Firebase ID" [(ngModel)]="airline.id" name="id" disabled="disabled" />
+                <small class="form-text text-muted">This field is self-generated
+        </small>
+            </div>
+
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" placeholder="Heroe's Name" [(ngModel)]="airline.name" name="name" name="name" required />
+            </div>

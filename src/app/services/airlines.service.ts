@@ -1,18 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AirlineModel } from '../models/airline.model';
-import {map} from 'rxjs/operators'
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AirlinesService {
-  private url = 'https://api.instantwebtools.net/v1/airlines';
+  private url = 'https://api.instantwebtools.net/v1';
 
   constructor(private http: HttpClient) {}
 
-  crearAirline(airline: AirlineModel) {
-    return this.http.post(`${this.url}`, airline).pipe(
+  getAirlines() {
+    return this.http.get(`${this.url}/airlines`).pipe(map(this.crearArreglo));
+  }
+
+  getAirline(id: string) {
+    return this.http
+      .get(`${this.url}airlines/${id}`)
+      .pipe(map((resp: any) => resp));
+  }
+
+  postAirlines(airline: AirlineModel) {
+    return this.http.post(`${this.url}/airlines`, airline).pipe(
       map((resp: any) => {
         airline.id = resp.name;
         return airline;
@@ -29,19 +39,10 @@ export class AirlinesService {
     return this.http.put(`${this.url}${airline.id}`, airlineTemp);
   }
 
-  borrarAirline(id: string) {
-    return this.http.delete(`${this.url}${id}`);
+  borrarpassenger(id: string) {
+    return this.http.delete(`${this.url}/passenger/${id}`);
   }
 
-  getAirline(id: string) {
-    return this.http.get(`${this.url}/:id`);
-  }
-
-  getAirlines() {
-    return this.http
-      .get(`${this.url}`)
-      .pipe(map(this.crearArreglo));
-  }
   private crearArreglo(airlinesObj: object) {
     const airlines: AirlineModel[] = [];
 

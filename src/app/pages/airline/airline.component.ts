@@ -11,19 +11,21 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-airline',
   templateUrl: './airline.component.html',
-  styleUrls: ['./airline.component.css']
+  styleUrls: ['./airline.component.css'],
 })
 export class AirlineComponent implements OnInit {
   airline = new AirlineModel();
 
-  constructor(private airlinesService: AirlinesService,
-    private route: ActivatedRoute) { }
+  constructor(
+    private airlinesService: AirlinesService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
   }
 
-  
+  getAirline() {}
 
   guardar(form: NgForm) {
     if (form.invalid) {
@@ -40,7 +42,7 @@ export class AirlineComponent implements OnInit {
     if (this.airline.id) {
       peticion = this.airlinesService.actualizarAirline(this.airline);
     } else {
-      peticion = this.airlinesService.crearAirline(this.airline);
+      peticion = this.airlinesService.postAirlines(this.airline);
     }
 
     peticion.subscribe((resp) => {
@@ -51,5 +53,4 @@ export class AirlineComponent implements OnInit {
       });
     });
   }
-
 }

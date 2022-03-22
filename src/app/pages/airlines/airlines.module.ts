@@ -4,15 +4,8 @@ import { RouterModule } from '@angular/router';
 import { AirlinesComponent } from './airlines.component';
 
 @NgModule({
-  declarations: [
-    AirlinesComponent,
-  ],
-  exports: [
-AirlinesComponent
-  ],
-  imports:[
-RouterModule,
-CommonModule,
-  ],
+  declarations: [AirlinesComponent],
+  exports: [AirlinesComponent],
+  imports: [RouterModule, CommonModule],
 })
-export class AirlinesModule { }
+export class AirlinesModule {}

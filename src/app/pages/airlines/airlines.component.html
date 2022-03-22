@@ -1,14 +1,14 @@
 <h1>Airlines List</h1>
 <hr />
 
-<div class="row">
+<!-- <div class="row">
     <div class="col text-right">
-        <button routerLink="/airlines" class="btn btn-primary">
-      <i class="fa fa-plus"></i>
-      Add
+        <button routerLink="/airline" class="btn btn-primary">
+      <i class="fa"></i>
+      ADD
     </button>
     </div>
-</div>
+</div> -->
 
 <div *ngIf="loading" class="spinner-border" role="status">
     <span class="sr-only">Loading...</span>
@@ -20,11 +20,6 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">country</th>
-            <!-- <th scope="col">Logo</th>-->
-            <!-- <th scope="col">Slogan</th> -->
-            <!--  <th scope="col">Head quaters</th> -->
-            <!--   <th scope="col">Website</th> -->
-            <th scope="col">Established</th>
         </tr>
     </thead>
     <tbody>
@@ -32,16 +27,7 @@
             <th scope="row">{{ i + 1 }}</th>
             <td>{{ airline.name }}</td>
             <td>{{ airline.country }}</td>
-            <!--       <td>{{ airline.logo }}</td>
-            <td>{{ airline.slogan }}</td>
-            <td>{{ airline.head_quaters }}</td> -->
-            <!--   <td>{{ airline.website }}</td> -->
-            <td>{{ airline.established }}</td>
-            <td>
-                <button class="btn btn-info mr-1" [routerLink]="['/airline', airline.id]">
-          <i class="fa-solid fa-eye"></i>
-        </button>
-            </td>
+            <td></td>
         </tr>
     </tbody>
 </table>

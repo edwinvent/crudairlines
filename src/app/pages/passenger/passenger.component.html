@@ -1,0 +1,51 @@
+<h1>Passenger</h1>
+<hr />
+
+<div class="row text-right">
+    <div class="col">
+        <button class="btn btn-danger" routerLink="/passengers">
+      <i class="fa fa-arrow-left"></i>
+      Return Passengers
+    </button>
+    </div>
+</div>
+
+<div class="row animated fadeIn faster">
+    <div class="col">
+        <form [formGroup]="formGroupPassenger">
+            <div class="form-group">
+                <label>Passenger ID</label>
+                <input type="text" class="form-control" formControlName="_id" placeholder="Passenger ID" />
+                <small class="form-text text-muted">This field is self-generated
+        </small>
+            </div>
+
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" formControlName="name" placeholder="Passenger's Name" />
+            </div>
+
+            <div class="form-group">
+                <label>Trips</label>
+                <input type="text" class="form-control" formControlName="trips" placeholder="Trips" />
+            </div>
+
+            <div class="form-group">
+                <label>Airline</label>
+                <input type="text" class="form-control" formControlName="airline" placeholder="Airline" />
+            </div>
+
+            <hr />
+            <div class="form-group text-center">
+                <button *ngIf="this.id" class="btn btn-outline-primary w-30" (click)="update()" type="button">
+          <i class="fas fa-plus"></i>
+          Update
+        </button>
+                <button *ngIf="!this.id" class="btn btn-outline-primary w-30" (click)="create()" type="button">
+          <i class="fas fa-plus"></i>
+          Create
+        </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<h1>Passengers</h1>
+<div class="col text-right">
+    <button routerLink="/passenger" class="btn btn-primary">
+    <i class="fas fa-plus"></i>
+    Add Passenger
+  </button>
+</div>
+
+<div *ngIf="loading" class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+</div>
+
+<table *ngIf="!loading" class="table mt-3 animated fadeIn faster">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Trips</th>
+            <th scope="col">Airline</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let passenger of passengers; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ passenger.name }}</td>
+            <td>{{ passenger.trips }}</td>
+            <td>{{ passenger.airline[0].name }}</td>
+
+            <td class="d-flex mt-2">
+                <button class="btn btn-warning" [routerLink]="['/passenger', passenger._id]">
+          <i class="fas fa-pen"></i>
+        </button>
+                <button class="btn btn-danger" (click)="deletePassenger(passenger)">
+          <i class="far fa-trash-alt"></i>
+        </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -6,10 +6,22 @@
   </button>
 </div>
 
+<!-- <button class="btn btn-outline-primary" 
+(click)="minusPage()"
+> Anterior</button>
+&nbsp;
+<button class="btn btn-outline-primary" 
+(click)="plusPage()"
+> Siguiente</button> -->
+
 <div *ngIf="loading" class="spinner-border" role="status">
     <span class="sr-only">Loading...</span>
 </div>
-
+<ngb-pagination
+  [(page)]="page"
+  [pageSize]="pageSize"
+  [collectionSize]="100"
+  (pageChange)="pageChange($event)"></ngb-pagination>
 <table *ngIf="!loading" class="table mt-3 animated fadeIn faster">
     <thead class="thead-dark">
         <tr>
@@ -21,7 +33,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let passenger of passengers; let i = index">
+        <tr *ngFor="let passenger of passengers; let i = index " >
             <th scope="row">{{ i + 1 }}</th>
             <td>{{ passenger.name }}</td>
             <td>{{ passenger.trips }}</td>

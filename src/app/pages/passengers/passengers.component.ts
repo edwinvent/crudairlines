@@ -12,7 +12,9 @@ export class PassengersComponent implements OnInit {
   passengers: any[] = [];
 
   loading: boolean = false;
-
+  
+  page: number= 1;
+  pageSize:number = 10;
   constructor(private passengersService: PassengersService) {}
 
   ngOnInit() {
@@ -21,10 +23,12 @@ export class PassengersComponent implements OnInit {
 
   getPassengers() {
     this.loading = true;
-    this.passengersService.getPassengers().subscribe({
+
+
+    this.passengersService.getPassengers(this.page, this.pageSize).subscribe({
       next: (resp) => {
-        console.log(resp);
-        this.passengers = resp;
+
+        this.passengers = resp.data;
         this.loading = false;
       },
       error: (err) => console.log(err),
@@ -54,4 +58,18 @@ export class PassengersComponent implements OnInit {
   }
 
   showPassenger(passenger: PassengerModel) {}
+
+  pageChange(page:number){
+    this.getPassengers();
+  }
+
+  /* plusPage(){
+    this.page += 1;
+    this.getPassengers();
+    }
+
+    minusPage(){
+      this.page -= 1;
+      this.getPassengers();
+      } */
 }

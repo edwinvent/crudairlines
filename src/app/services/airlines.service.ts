@@ -12,7 +12,7 @@ export class AirlinesService {
   constructor(private http: HttpClient) {}
 
   getAirlines() {
-    return this.http.get(`${this.url}/airlines`).pipe(map(this.crearArreglo));
+    return this.http.get(`${this.url}/airlines?page=1&size=10`).pipe(map(this.crearArreglo));
   }
 
   getAirline(id: string) {

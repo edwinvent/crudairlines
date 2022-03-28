@@ -2,19 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { PassengerModel } from '../models/passenger.model';
-
 @Injectable({
   providedIn: 'root',
 })
 export class PassengersService {
-  private url = 'https://api.instantwebtools.net/v1';
+  public url = 'https://api.instantwebtools.net/v1';
 
   constructor(private http: HttpClient) {}
-
-  getPassengers() {
-    return this.http.get(`${this.url}/passenger`).pipe(
+  
+  getPassengers(page: number, pageSize:number) {
+    return this.http.get(`${this.url}/passenger?page=${page}&size=${pageSize}`).pipe(
       map((resp: any) => {
-        return resp.data;
+        return resp;
       })
     );
   }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,6 +12,7 @@ import { AirlinesService } from './services/airlines.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PassengerComponent } from './pages/passenger/passenger.component';
 import { PassengersComponent } from './pages/passengers/passengers.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent, PassengerComponent, PassengersComponent],
@@ -23,6 +25,7 @@ import { PassengersComponent } from './pages/passengers/passengers.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

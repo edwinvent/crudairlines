@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./airline.component.css'],
 })
 export class AirlineComponent implements OnInit {
-  airline = new AirlineModel();
+  airline : AirlineModel;
 
   constructor(
     private airlinesService: AirlinesService,
@@ -39,11 +39,11 @@ export class AirlineComponent implements OnInit {
 
     let peticion: Observable<any>;
 
-    if (this.airline.id) {
+    /* if (this.airline.id) {
       peticion = this.airlinesService.actualizarAirline(this.airline);
     } else {
       peticion = this.airlinesService.postAirlines(this.airline);
-    }
+    } */
 
     peticion.subscribe((resp) => {
       Swal.fire({

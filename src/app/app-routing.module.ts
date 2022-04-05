@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'passengers', component: PassengersComponent },
   { path: 'passenger', component: PassengerComponent },
   { path: 'passenger/:id', component: PassengerComponent },
-  { path: '**', pathMatch: 'full', redirectTo: 'airlines' },
+  { path: '**', pathMatch: 'full', redirectTo: 'passengers' },
 ];
 
 @NgModule({

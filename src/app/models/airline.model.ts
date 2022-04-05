@@ -1,4 +1,4 @@
-export class AirlineModel {
+export interface AirlineModel {
     id: string;
     name: string;
     country: string;
@@ -7,6 +7,5 @@ export class AirlineModel {
     head_quaters: string;
     website: string;
     established: string;
-constructor(){}
 
 }

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Route, ActivatedRoute, Routes, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PassengersService } from '../../services/passengers.service';
-import { PassengerModel } from '../../models/passenger.model';
+
 
 @Component({
   selector: 'app-passenger',
@@ -13,6 +13,11 @@ export class PassengerComponent implements OnInit {
   formGroupPassenger: FormGroup;
 
   id: string = '';
+ showToast!: boolean;
+
+
+
+
 
   constructor(
     private fb: FormBuilder,
@@ -76,6 +81,7 @@ export class PassengerComponent implements OnInit {
       .updatePassenger(this.formGroupPassenger.getRawValue())
       .subscribe({
         next: (resp) => {
+          this.showToast = true
           console.log(resp);
         },
         error: (err) => console.log(err),

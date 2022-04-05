@@ -6,11 +6,11 @@
   </button>
 </div>
 
-<!-- <button class="btn btn-outline-primary" 
+<!-- <button class="btn btn-outline-primary"
 (click)="minusPage()"
 > Anterior</button>
 &nbsp;
-<button class="btn btn-outline-primary" 
+<button class="btn btn-outline-primary"
 (click)="plusPage()"
 > Siguiente</button> -->
 
@@ -20,11 +20,13 @@
 <ngb-pagination
   [(page)]="page"
   [pageSize]="pageSize"
-  [collectionSize]="75457"
+  [collectionSize]="collection"
   [boundaryLinks]="true"
   [rotate]="true"
   [maxSize]="5"
   (pageChange)="pageChange($event)"></ngb-pagination>
+
+
 <table *ngIf="!loading" class="table mt-3 animated fadeIn faster">
     <thead class="thead-dark">
         <tr>

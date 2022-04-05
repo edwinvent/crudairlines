@@ -21,7 +21,7 @@ export class AirlinesService {
       .pipe(map((resp: any) => resp));
   }
 
-  postAirlines(airline: AirlineModel) {
+  /* postAirlines(airline: AirlineModel) {
     return this.http.post(`${this.url}/airlines`, airline).pipe(
       map((resp: any) => {
         airline.id = resp.name;
@@ -41,7 +41,7 @@ export class AirlinesService {
 
   borrarpassenger(id: string) {
     return this.http.delete(`${this.url}/passenger/${id}`);
-  }
+  } */
 
   private crearArreglo(airlinesObj: object) {
     const airlines: AirlineModel[] = [];

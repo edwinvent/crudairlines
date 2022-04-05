@@ -12,9 +12,11 @@ export class PassengersComponent implements OnInit {
   passengers: any[] = [];
 
   loading: boolean = false;
-  
+
   page: number= 1;
   pageSize:number = 10;
+  collect:number= 0;
+  collection:number = 0;
   constructor(private passengersService: PassengersService) {}
 
   ngOnInit() {
@@ -30,6 +32,8 @@ export class PassengersComponent implements OnInit {
 
         this.passengers = resp.data;
         this.loading = false;
+        this.collect = resp.totalPassengers;
+        this.collection = this.collect - 10
       },
       error: (err) => console.log(err),
     });

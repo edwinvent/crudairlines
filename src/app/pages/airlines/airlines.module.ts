@@ -5,7 +5,7 @@ import { AirlinesComponent } from './airlines.component';
 
 @NgModule({
   declarations: [AirlinesComponent],
+  imports: [RouterModule, CommonModule, ],
   exports: [AirlinesComponent],
-  imports: [RouterModule, CommonModule],
 })
 export class AirlinesModule {}

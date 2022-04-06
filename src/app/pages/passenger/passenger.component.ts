@@ -1,8 +1,9 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PassengersService } from '../../services/passengers.service';
-
+import Swal from 'sweetalert2';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-passenger',
@@ -13,17 +14,13 @@ export class PassengerComponent implements OnInit {
   formGroupPassenger: FormGroup;
 
   id: string = '';
- showToast!: boolean;
-
-
-
-
 
   constructor(
     private fb: FormBuilder,
     private passengersService: PassengersService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -74,6 +71,7 @@ export class PassengerComponent implements OnInit {
         },
         error: (err) => console.log(err),
       });
+    Swal.fire('Creating', 'Created');
   }
 
   update() {
@@ -81,10 +79,29 @@ export class PassengerComponent implements OnInit {
       .updatePassenger(this.formGroupPassenger.getRawValue())
       .subscribe({
         next: (resp) => {
-          this.showToast = true
-          console.log(resp);
+          this.showSuccess();
         },
-        error: (err) => console.log(err),
+        error: (err) => {
+          this.showDanger();
+        },
       });
+  }
+
+  showStandard() {
+    this.toastService.show('I am a standard toast');
+  }
+
+  showSuccess() {
+    this.toastService.show('SUCCESS', {
+      classname: 'bg-success text-light',
+      delay: 2000,
+    });
+  }
+
+  showDanger() {
+    this.toastService.show('ERROR', {
+      classname: 'bg-danger text-light',
+      delay: 3000,
+    });
   }
 }

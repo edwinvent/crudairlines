@@ -11,13 +11,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { PassengerComponent } from './pages/passenger/passenger.component';
 import { PassengersComponent } from './pages/passengers/passengers.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastModule } from './tools/toast/toast.module';
 
 @NgModule({
   declarations: [AppComponent, PassengerComponent, PassengersComponent],
   imports: [
     AirlineModule,
     AirlinesModule,
-
+    ToastModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,

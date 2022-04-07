@@ -1,7 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PassengerModel } from 'src/app/models/passenger.model';
 import { PassengersService } from 'src/app/services/passengers.service';
-import Swal from 'sweetalert2';
+
+import { ModalFocusComponent } from 'src/app/tools/Modalsngb/modal-focus/modal-focus.component';
 
 @Component({
   selector: 'app-passengers',
@@ -13,11 +15,14 @@ export class PassengersComponent implements OnInit {
 
   loading: boolean = false;
 
-  page: number= 1;
-  pageSize:number = 10;
-  collect:number= 0;
-  collection:number = 0;
-  constructor(private passengersService: PassengersService) {}
+  page: number = 1;
+  pageSize: number = 10;
+  collect: number = 0;
+  collection: number = 0;
+  constructor(
+    private passengersService: PassengersService,
+    private modal: NgbModal
+  ) {}
 
   ngOnInit() {
     this.getPassengers();
@@ -26,20 +31,18 @@ export class PassengersComponent implements OnInit {
   getPassengers() {
     this.loading = true;
 
-
     this.passengersService.getPassengers(this.page, this.pageSize).subscribe({
       next: (resp) => {
-
         this.passengers = resp.data;
         this.loading = false;
         this.collect = resp.totalPassengers;
-        this.collection = this.collect - 10
+        this.collection = this.collect - 10;
       },
       error: (err) => console.log(err),
     });
   }
 
-  deletePassenger(passenger: PassengerModel) {
+  /* deletePassenger(passenger: PassengerModel) {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -59,11 +62,19 @@ export class PassengersComponent implements OnInit {
         });
       }
     });
+  } */
+  deletePassenger(passenger: PassengerModel) {
+    let instance = this.modal.open(ModalFocusComponent);
+
+    instance.result.then((resp) => {
+      console.log(resp);
+
+    });
   }
 
   showPassenger(passenger: PassengerModel) {}
 
-  pageChange(page:number){
+  pageChange(page: number) {
     this.getPassengers();
   }
 

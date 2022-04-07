@@ -10,11 +10,13 @@ import { AirlinesModule } from './pages/airlines/airlines.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PassengerComponent } from './pages/passenger/passenger.component';
 import { PassengersComponent } from './pages/passengers/passengers.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastModule } from './tools/toast/toast.module';
+import { NgbdModalFocusModule } from './tools/Modalsngb/modal-focus/modal-focus.module';
+import { ModalFocusComponent } from './tools/Modalsngb/modal-focus/modal-focus.component';
 
 @NgModule({
-  declarations: [AppComponent, PassengerComponent, PassengersComponent],
+  declarations: [AppComponent, PassengerComponent, PassengersComponent ],
   imports: [
     AirlineModule,
     AirlinesModule,
@@ -25,8 +27,10 @@ import { ToastModule } from './tools/toast/toast.module';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    NgbdModalFocusModule
   ],
-  providers: [],
+  providers: [NgbActiveModal],
   bootstrap: [AppComponent],
+  entryComponents:[ModalFocusComponent]
 })
 export class AppModule {}

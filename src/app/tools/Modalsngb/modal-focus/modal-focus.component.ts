@@ -1,16 +1,18 @@
-import { Component, OnInit, Type } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { PassengerModel } from 'src/app/models/passenger.model';
-
+import { PassengersService } from 'src/app/services/passengers.service';
 @Component({
   selector: 'app-modal-focus',
   templateUrl: './modal-focus.component.html',
 })
 export class ModalFocusComponent {
-  constructor(public modal: NgbActiveModal) {}
-  MODALS: { [name: string]: Type<any> } = {
+  constructor(public modal: NgbActiveModal, private passengersService: PassengersService) {}
+ /*  MODALS: { [name: string]: Type<any> } = {
     focusFirst: ModalFocusComponent
-  }
+  } */
+
+  @Input() pasajero
+
 
 
   action(value: boolean): void {
@@ -19,9 +21,6 @@ export class ModalFocusComponent {
 
     this.modal.close(value);
 
-    if (value){
-      console.log('ELIMINADO')
-    }
 
   }
 

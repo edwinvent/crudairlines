@@ -4,6 +4,7 @@ import { PassengerModel } from 'src/app/models/passenger.model';
 import { PassengersService } from 'src/app/services/passengers.service';
 
 import { ModalFocusComponent } from 'src/app/tools/Modalsngb/modal-focus/modal-focus.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-passengers',
@@ -11,7 +12,9 @@ import { ModalFocusComponent } from 'src/app/tools/Modalsngb/modal-focus/modal-f
   styleUrls: ['./passengers.component.css'],
 })
 export class PassengersComponent implements OnInit {
+
   passengers: any[] = [];
+
 
   loading: boolean = false;
 
@@ -66,10 +69,23 @@ export class PassengersComponent implements OnInit {
   deletePassenger(passenger: PassengerModel) {
     let instance = this.modal.open(ModalFocusComponent);
 
-    instance.result.then((resp) => {
-      console.log(resp);
+     instance.componentInstance.pasajero = passenger.name
 
-    });
+
+     console.log(passenger)
+
+    instance.result.then((result) => {
+      if (result) {
+        this.passengersService.deletePassenger(passenger).subscribe({
+          next: () => {
+            this.getPassengers();
+            Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+          },
+          error: (err) => console.log(err),
+        });
+      }
+  })
+
   }
 
   showPassenger(passenger: PassengerModel) {}
